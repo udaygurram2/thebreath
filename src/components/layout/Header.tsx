@@ -59,10 +59,9 @@ const Header: React.FC = () => {
                     ? isActive
                       ? 'text-green-600'
                       : 'text-neutral-700 hover:text-green-600'
-                    isActive
-  ? 'text-green-600'
-  : 'text-neutral-700 hover:text-green-600'
-
+                    : isActive
+                    ? 'text-green-600'
+                    : 'text-neutral-700 hover:text-green-600'
                 }`
               }
             >
