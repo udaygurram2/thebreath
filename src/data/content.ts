@@ -452,10 +452,7 @@ const content = {
       { platform: "Facebook", icon: "facebook", url: "https://facebook.com" },
       { platform: "Pinterest", icon: "pinterest", url: "https://pinterest.com" }
     ],
-    mapLocation: {
-      address: "123 Green Street, Plant District, Eco City, EC 12345",
-      coordinates: { lat: 40.7128, lng: -74.0060 }
-    }
+   
   },
   book: {
     hero: {
