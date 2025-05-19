@@ -1,10 +1,41 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Leaf, Send, Instagram, Facebook, Pointer as Pinterest } from 'lucide-react';
 import content from '../../data/content';
 
 const Footer: React.FC = () => {
   const { footer, brand, navigation } = content;
+  const [email, setEmail] = useState('');
+  const [subscribeStatus, setSubscribeStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubscribeStatus('submitting');
+
+    try {
+      const response = await fetch('https://formspree.io/f/udaygurram10@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email,
+          type: 'newsletter_subscription'
+        })
+      });
+
+      if (response.ok) {
+        setSubscribeStatus('success');
+        setEmail('');
+        setTimeout(() => setSubscribeStatus('idle'), 3000);
+      } else {
+        throw new Error('Failed to subscribe');
+      }
+    } catch (error) {
+      setSubscribeStatus('error');
+      setTimeout(() => setSubscribeStatus('idle'), 3000);
+    }
+  };
   
   return (
     <footer className="bg-neutral-900 text-white pt-16 pb-6">
@@ -73,20 +104,30 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-lg font-medium mb-4">{footer.newsletter.title}</h4>
             <p className="text-neutral-300 mb-4">{footer.newsletter.description}</p>
-            <form className="flex">
+            <form onSubmit={handleNewsletterSubmit} className="flex">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder={footer.newsletter.placeholder}
                 className="px-4 py-2 rounded-l-md bg-neutral-800 border-neutral-700 text-white w-full focus:outline-none focus:ring-1 focus:ring-green-500"
+                required
               />
               <button
                 type="submit"
-                className="bg-green-600 hover:bg-green-700 rounded-r-md px-4 flex items-center justify-center transition-colors"
+                className="bg-green-600 hover:bg-green-700 rounded-r-md px-4 flex items-center justify-center transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={subscribeStatus === 'submitting'}
                 aria-label="Subscribe"
               >
                 <Send size={16} />
               </button>
             </form>
+            {subscribeStatus === 'success' && (
+              <p className="text-green-400 text-sm mt-2">Thanks for subscribing!</p>
+            )}
+            {subscribeStatus === 'error' && (
+              <p className="text-red-400 text-sm mt-2">Failed to subscribe. Please try again.</p>
+            )}
           </div>
         </div>
 

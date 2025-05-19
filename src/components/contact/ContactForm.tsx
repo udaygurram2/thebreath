@@ -19,27 +19,41 @@ const ContactForm: React.FC = () => {
     setFormState(prev => ({ ...prev, [id]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setFormStatus('submitting');
     
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus('success');
-      // Reset form after success
-      setFormState({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
+    try {
+      const response = await fetch('https://formspree.io/f/udaygurram10@gmail.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formState)
       });
-      
-      // Reset status after 3 seconds
+
+      if (response.ok) {
+        setFormStatus('success');
+        setFormState({
+          name: '',
+          email: '',
+          phone: '',
+          subject: '',
+          message: ''
+        });
+        
+        setTimeout(() => {
+          setFormStatus('idle');
+        }, 3000);
+      } else {
+        throw new Error('Failed to submit form');
+      }
+    } catch (error) {
+      setFormStatus('error');
       setTimeout(() => {
         setFormStatus('idle');
       }, 3000);
-    }, 1500);
+    }
   };
 
   return (
