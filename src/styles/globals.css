@@ -30,7 +30,6 @@
   html {
     font-family: 'Poppins', system-ui, sans-serif;
     scroll-behavior: smooth;
-    scroll-padding-top: 5rem;
   }
 
   body {
@@ -64,10 +63,6 @@
   p {
     @apply leading-relaxed text-base md:text-lg text-neutral-700;
   }
-
-  main {
-    @apply pt-16;
-  }
 }
 
 @layer components {
@@ -100,7 +95,7 @@
   }
   
   .hero-section {
-    @apply relative min-h-[90vh] flex items-center;
+    @apply relative min-h-[80vh] flex items-center;
   }
   
   .hero-overlay {
