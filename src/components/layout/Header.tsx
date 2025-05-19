@@ -32,17 +32,17 @@ const Header: React.FC = () => {
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
+        isScrolled ? 'bg-white shadow-md py-3' 
       }`}
     >
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center space-x-2">
           <img 
-        src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
+          src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
             alt="Breathe Logo"
             className={`w-32 transition-opacity ${
-              isScrolled ? 'opacity-0' : 'opacity-90 hover:opacity-0'
+              isScrolled ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             }`}
           />
         </NavLink>
