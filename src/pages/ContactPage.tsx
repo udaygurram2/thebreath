@@ -28,6 +28,9 @@ const ContactPage: React.FC = () => {
           </div>
         </div>
       </section>
+      
+  
+    </PageWrapper>
   );
 };
 
