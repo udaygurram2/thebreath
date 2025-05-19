@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import content from '../../data/content';
 import { motion, AnimatePresence } from 'framer-motion';
+import content from '../../data/content';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -15,108 +15,123 @@ const Header: React.FC = () => {
     };
 
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
     setMobileMenuOpen(false);
   }, [location]);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <header
       className={`fixed w-full z-50 transition-all duration-300 ${
-  isScrolled ? 'shadow-md py-3' : 'py-5'
-} bg-white`}
+        isScrolled ? 'shadow-md py-2' : 'py-3'
+      } bg-white`}
     >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        {/* Logo */}
-        <NavLink to="/" className="flex items-center space-x-2">
-          <img 
-          src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
-            alt="Breathe Logo"
-            className={`w-32 transition-opacity ${
-              isScrolled ? 'opacity-100' : 'opacity-90 hover:opacity-100'
-            }`}
-          />
-        </NavLink>
+      <div className="container mx-auto px-4">
+        <nav className="flex items-center justify-between">
+          {/* Logo */}
+          <NavLink to="/" className="relative z-50">
+            <img 
+              src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
+              alt="Breathe Logo"
+              className="w-24 md:w-32 transition-opacity"
+            />
+          </NavLink>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-          {content.navigation.links.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              className={({ isActive }) =>
-                `text-sm font-medium transition-colors ${
-                  isScrolled
-                    ? isActive
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-6">
+            {content.navigation.links.map((link) => (
+              <NavLink
+                key={link.path}
+                to={link.path}
+                className={({ isActive }) =>
+                  `text-sm font-medium transition-colors ${
+                    isActive
                       ? 'text-green-600'
                       : 'text-neutral-700 hover:text-green-600'
-                    : isActive
-                    ? 'text-green-600'
-                    : 'text-neutral-700 hover:text-green-600'
-                }`
-              }
-            >
-              {link.name}
-            </NavLink>
-          ))}
-        </nav>
+                  }`
+                }
+              >
+                {link.name}
+              </NavLink>
+            ))}
+          </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="md:hidden text-2xl focus:outline-none"
-          onClick={toggleMobileMenu}
-          aria-label="Toggle menu"
-        >
-          {mobileMenuOpen ? (
-            <X
-              size={24}
-              className={isScrolled ? 'text-neutral-800' : 'text-white'}
-            />
-          ) : (
-            <Menu
-              size={24}
-              className={isScrolled ? 'text-neutral-800' : 'text-white'}
-            />
-          )}
-        </button>
+          {/* Mobile Menu Button */}
+          <button
+            className="relative z-50 md:hidden focus:outline-none"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            aria-label="Toggle menu"
+          >
+            <AnimatePresence mode="wait">
+              {mobileMenuOpen ? (
+                <motion.div
+                  key="close"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <X size={24} className="text-neutral-800" />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="menu"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Menu size={24} className="text-neutral-800" />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </button>
+        </nav>
       </div>
 
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden bg-white"
+            className="fixed inset-0 bg-white z-40 pt-20"
           >
-            <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-              {content.navigation.links.map((link) => (
-                <NavLink
-                  key={link.path}
-                  to={link.path}
-                  className={({ isActive }) =>
-                    `py-2 text-base font-medium ${
-                      isActive
-                        ? 'text-green-600'
-                        : 'text-neutral-700 hover:text-green-600'
-                    }`
-                  }
-                >
-                  {link.name}
-                </NavLink>
-              ))}
-            </div>
+            <nav className="container mx-auto px-4 py-6">
+              <div className="flex flex-col space-y-6">
+                {content.navigation.links.map((link) => (
+                  <NavLink
+                    key={link.path}
+                    to={link.path}
+                    className={({ isActive }) =>
+                      `text-lg font-medium ${
+                        isActive
+                          ? 'text-green-600'
+                          : 'text-neutral-700 hover:text-green-600'
+                      }`
+                    }
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    {link.name}
+                  </NavLink>
+                ))}
+              </div>
+            </nav>
           </motion.div>
         )}
       </AnimatePresence>
