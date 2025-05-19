@@ -435,9 +435,9 @@ const content = {
       image: "https://images.pexels.com/photos/6957084/pexels-photo-6957084.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
     },
     info: {
-      email: "hello@breatheplants.com",
-      phone: "+1 (555) 123-4567",
-      address: "123 Green Street, Plant District, Eco City, EC 12345",
+      email: "hello@thebreathe.com",
+      phone: "+91-9440598639",
+      address: "Hyderabad",
       hours: "Monday-Friday: 9am-6pm | Saturday: 10am-4pm | Sunday: Closed"
     },
     formFields: [
