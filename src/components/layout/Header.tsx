@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X, Leaf } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import content from '../../data/content';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -38,19 +38,13 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center space-x-2">
-          <Leaf
-            size={32}
-            className={`transition-colors ${
-              isScrolled ? 'text-green-600' : 'text-white'
+          <img 
+            src="https://res.cloudinary.com/udaygurram/image/upload/v1747667384/breathe_logo_color_embed_ahstur.svg"
+            alt="Breathe Logo"
+            className={`w-32 transition-opacity ${
+              isScrolled ? 'opacity-100' : 'opacity-90 hover:opacity-100'
             }`}
           />
-          <span
-            className={`text-xl font-semibold tracking-tight transition-colors ${
-              isScrolled ? 'text-neutral-800' : 'text-white'
-            }`}
-          >
-            {content.brand.name}
-          </span>
         </NavLink>
 
         {/* Desktop Navigation */}
