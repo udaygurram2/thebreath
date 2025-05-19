@@ -138,7 +138,7 @@ const content = {
         {
           title: "Ongoing Support",
           description: "Maintenance plans to keep your greenery thriving year-round.",
-          image: "https://images.pexels.com/photos/5417646/pexels-photo-5417646.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+          image: "https://res.cloudinary.com/udaygurram/image/upload/v1747669035/male-gardener-s-hand-holding-cactus-plant-red-rack_yanlfu.jpg"
         }
       ]
     }
