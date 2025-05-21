@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ShoppingCart } from 'lucide-react';
 import { Product } from '../../data/shop';
+import { useCart } from '../../context/CartContext';
 import Button from '../ui/Button';
+import toast from 'react-hot-toast';
 
 interface ProductCardProps {
   product: Product;
@@ -11,6 +13,14 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
+  const { dispatch } = useCart();
+
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.preventDefault();
+    dispatch({ type: 'ADD_ITEM', payload: product });
+    toast.success(`${product.name} added to cart`);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -62,6 +72,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, index }) => {
           variant="primary"
           fullWidth
           disabled={product.stockStatus === 'out_of_stock'}
+          onClick={handleAddToCart}
         >
           <ShoppingCart size={18} className="mr-2" />
           Add to Cart

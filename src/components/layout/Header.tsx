@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCart } from '../../context/CartContext';
 import content from '../../data/content';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const location = useLocation();
+  const { state } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -67,38 +69,56 @@ const Header: React.FC = () => {
                 {link.name}
               </NavLink>
             ))}
+            <NavLink to="/cart" className="relative">
+              <ShoppingCart className="w-6 h-6 text-neutral-700 hover:text-green-600" />
+              {state.items.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {state.items.length}
+                </span>
+              )}
+            </NavLink>
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="relative z-50 md:hidden focus:outline-none"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <AnimatePresence mode="wait">
-              {mobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={24} className="text-neutral-800" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={24} className="text-neutral-800" />
-                </motion.div>
+          <div className="flex items-center space-x-4 md:hidden">
+            <NavLink to="/cart" className="relative">
+              <ShoppingCart className="w-6 h-6 text-neutral-700" />
+              {state.items.length > 0 && (
+                <span className="absolute -top-2 -right-2 bg-green-600 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center">
+                  {state.items.length}
+                </span>
               )}
-            </AnimatePresence>
-          </button>
+            </NavLink>
+            <button
+              className="relative z-50 focus:outline-none"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <AnimatePresence mode="wait">
+                {mobileMenuOpen ? (
+                  <motion.div
+                    key="close"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <X size={24} className="text-neutral-800" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="menu"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Menu size={24} className="text-neutral-800" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </button>
+          </div>
         </nav>
       </div>
 
