@@ -11,6 +11,7 @@ import GalleryPage from './pages/GalleryPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import BookPage from './pages/BookPage';
+import ShopPage from './pages/shop/ShopPage';
 import SEOManager from './pages/SEOManager';
 
 // Styles
@@ -29,6 +30,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/book" element={<BookPage />} />
+            <Route path="/shop" element={<ShopPage />} />
             <Route path="/seo-manager" element={<SEOManager />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
