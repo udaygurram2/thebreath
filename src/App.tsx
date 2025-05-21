@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
+import { Toaster } from 'react-hot-toast';
 import MainLayout from './layout/MainLayout';
 
 // Page components
@@ -12,6 +13,8 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import BookPage from './pages/BookPage';
 import ShopPage from './pages/shop/ShopPage';
+import CategoryPage from './pages/shop/CategoryPage';
+import ProductDetailPage from './pages/shop/ProductDetailPage';
 import SEOManager from './pages/SEOManager';
 
 // Styles
@@ -31,13 +34,14 @@ const App: React.FC = () => {
             <Route path="/contact" element={<ContactPage />} />
             <Route path="/book" element={<BookPage />} />
             <Route path="/shop" element={<ShopPage />} />
+            <Route path="/shop/:categoryId" element={<CategoryPage />} />
+            <Route path="/shop/product/:productId" element={<ProductDetailPage />} />
             <Route path="/seo-manager" element={<SEOManager />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
+        <Toaster position="bottom-right" />
       </Router>
     </HelmetProvider>
   );
 };
-
-export default App;
