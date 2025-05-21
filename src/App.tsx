@@ -15,6 +15,7 @@ import BookPage from './pages/BookPage';
 import ShopPage from './pages/shop/ShopPage';
 import CategoryPage from './pages/shop/CategoryPage';
 import ProductDetailPage from './pages/shop/ProductDetailPage';
+import CheckoutPage from './pages/CheckoutPage';
 import SEOManager from './pages/SEOManager';
 
 // Styles
@@ -36,6 +37,7 @@ const App: React.FC = () => {
             <Route path="/shop" element={<ShopPage />} />
             <Route path="/shop/:categoryId" element={<CategoryPage />} />
             <Route path="/shop/product/:productId" element={<ProductDetailPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/seo-manager" element={<SEOManager />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
@@ -46,4 +48,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App
+export default App;

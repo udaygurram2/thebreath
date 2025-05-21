@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useCartStore } from '../../store/cartStore';
+import CartDrawer from '../shop/CartDrawer';
 import content from '../../data/content';
 
 const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [cartOpen, setCartOpen] = useState(false);
   const location = useLocation();
+  const cartItemCount = useCartStore(state => state.getItemCount());
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,73 +38,102 @@ const Header: React.FC = () => {
   }, [mobileMenuOpen]);
 
   return (
-    <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? 'shadow-md py-2' : 'py-3'
-      } bg-white`}
-    >
-      <div className="container mx-auto px-4">
-        <nav className="flex items-center justify-between">
-          {/* Logo */}
-          <NavLink to="/" className="relative z-50">
-            <img 
-              src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
-              alt="Breathe Logo"
-              className="w-24 md:w-32 transition-opacity"
-            />
-          </NavLink>
+    <>
+      <header
+        className={`fixed w-full z-50 transition-all duration-300 ${
+          isScrolled ? 'shadow-md py-2' : 'py-3'
+        } bg-white`}
+      >
+        <div className="container mx-auto px-4">
+          <nav className="flex items-center justify-between">
+            {/* Logo */}
+            <NavLink to="/" className="relative z-50">
+              <img 
+                src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
+                alt="Breathe Logo"
+                className="w-24 md:w-32 transition-opacity"
+              />
+            </NavLink>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
-            {content.navigation.links.map((link) => (
-              <NavLink
-                key={link.path}
-                to={link.path}
-                className={({ isActive }) =>
-                  `text-sm font-medium transition-colors ${
-                    isActive
-                      ? 'text-green-600'
-                      : 'text-neutral-700 hover:text-green-600'
-                  }`
-                }
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center space-x-6">
+              {content.navigation.links.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  className={({ isActive }) =>
+                    `text-sm font-medium transition-colors ${
+                      isActive
+                        ? 'text-green-600'
+                        : 'text-neutral-700 hover:text-green-600'
+                    }`
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              ))}
+              
+              {/* Cart Button */}
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative p-2 hover:bg-neutral-100 rounded-full transition-colors"
               >
-                {link.name}
-              </NavLink>
-            ))}
-          </div>
+                <ShoppingBag size={20} />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
+            </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            className="relative z-50 md:hidden focus:outline-none"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <AnimatePresence mode="wait">
-              {mobileMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={24} className="text-neutral-800" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={24} className="text-neutral-800" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </button>
-        </nav>
-      </div>
+            {/* Mobile Menu Button */}
+            <div className="flex items-center space-x-4 md:hidden">
+              <button
+                onClick={() => setCartOpen(true)}
+                className="relative p-2 hover:bg-neutral-100 rounded-full transition-colors"
+              >
+                <ShoppingBag size={20} />
+                {cartItemCount > 0 && (
+                  <span className="absolute -top-1 -right-1 bg-green-600 text-white text-xs w-5 h-5 rounded-full flex items-center justify-center">
+                    {cartItemCount}
+                  </span>
+                )}
+              </button>
+              
+              <button
+                className="relative z-50 focus:outline-none"
+                onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                aria-label="Toggle menu"
+              >
+                <AnimatePresence mode="wait">
+                  {mobileMenuOpen ? (
+                    <motion.div
+                      key="close"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <X size={24} className="text-neutral-800" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="menu"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Menu size={24} className="text-neutral-800" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+            </div>
+          </nav>
+        </div>
+      </header>
 
       {/* Mobile Menu */}
       <AnimatePresence>
@@ -135,7 +168,10 @@ const Header: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-    </header>
+
+      {/* Cart Drawer */}
+      <CartDrawer isOpen={cartOpen} onClose={() => setCartOpen(false)} />
+    </>
   );
 };
 
