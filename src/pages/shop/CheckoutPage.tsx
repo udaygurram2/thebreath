@@ -81,15 +81,15 @@ const CheckoutPage: React.FC = () => {
       };
 
       await emailjs.send(
-        'service_your_service_id', // Replace with your EmailJS service ID
-        'template_your_template_id', // Replace with your EmailJS template ID
+        'service_fewp67u', // Replace with your EmailJS service ID
+        'template_2l1dxdi', // Replace with your EmailJS template ID
         {
           to_email: 'udaygurram10@gmail.com',
           from_email: formData.email,
           order_id: orderId,
           order_details: JSON.stringify(orderDetails, null, 2)
         },
-        'your_public_key' // Replace with your EmailJS public key
+        'uj21WkO313tFzesN6' // Replace with your EmailJS public key
       );
 
       // Clear cart and redirect to thank you page
