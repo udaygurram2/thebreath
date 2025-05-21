@@ -44,6 +44,7 @@ const content = {
       { name: "Services", path: "/services" },
       { name: "Maintenance", path: "/maintenance" },
       { name: "Gallery", path: "/gallery" },
+      { name: "Shop", path: "/shop" },
       { name: "About", path: "/about" },
       { name: "Contact", path: "/contact" },
       { name: "Book", path: "/book" }
