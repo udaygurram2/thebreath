@@ -21,15 +21,15 @@ const App: React.FC = () => {
     <HelmetProvider>
       <Router>
         <Routes>
-          <Route element={<MainLayout />}>
+          <Route path="/" element={<MainLayout />}>
             <Route index element={<HomePage />} />
-            <Route path="/services" element={<ServicesPage />} />
-            <Route path="/maintenance" element={<MaintenancePage />} />
-            <Route path="/gallery" element={<GalleryPage />} />
-            <Route path="/about" element={<AboutPage />} />
-            <Route path="/contact" element={<ContactPage />} />
-            <Route path="/book" element={<BookPage />} />
-            <Route path="/seo-manager" element={<SEOManager />} />
+            <Route path="services" element={<ServicesPage />} />
+            <Route path="maintenance" element={<MaintenancePage />} />
+            <Route path="gallery" element={<GalleryPage />} />
+            <Route path="about" element={<AboutPage />} />
+            <Route path="contact" element={<ContactPage />} />
+            <Route path="book" element={<BookPage />} />
+            <Route path="seo-manager" element={<SEOManager />} />
             <Route path="*" element={<Navigate to="/" replace />} />
           </Route>
         </Routes>
