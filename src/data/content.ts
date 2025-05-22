@@ -66,7 +66,7 @@ const content = {
         image: "https://images.pexels.com/photos/3049121/pexels-photo-3049121.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
       },
       {
-        title: "Living Room Oasis",
+        title: "Living Room",
         image: "https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
       },
       {
@@ -335,7 +335,7 @@ const content = {
       },
       {
         id: "gallery-10",
-        title: "Rooftop Oasis",
+        title: "Rooftop",
         category: "Terrace",
         image: "https://images.pexels.com/photos/4503751/pexels-photo-4503751.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         description: "Urban rooftop transformed with container gardens and lounge areas."
