@@ -48,40 +48,11 @@ export const categories: Category[] = [
     name: 'Plant Care',
     imageUrl: 'https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg',
     productCount: 12
-  },
-  {
-    id: 'tools',
-    name: 'Tools',
-    imageUrl: 'https://images.pexels.com/photos/2132227/pexels-photo-2132227.jpeg',
-    productCount: 20
-  },
-  {
-    id: 'fertilizers',
-    name: 'Fertilizers',
-    imageUrl: 'https://images.pexels.com/photos/1105019/pexels-photo-1105019.jpeg',
-    productCount: 8
-  },
-  {
-    id: 'decor',
-    name: 'Plant Décor',
-    imageUrl: 'https://images.pexels.com/photos/1366913/pexels-photo-1366913.jpeg',
-    productCount: 25
-  },
-  {
-    id: 'gifts',
-    name: 'Plant Gifts',
-    imageUrl: 'https://images.pexels.com/photos/1058771/pexels-photo-1058771.jpeg',
-    productCount: 15
-  },
-  {
-    id: 'accessories',
-    name: 'Accessories',
-    imageUrl: 'https://images.pexels.com/photos/1701535/pexels-photo-1701535.jpeg',
-    productCount: 22
   }
 ];
 
 export const products: Product[] = [
+  // Indoor Plants
   {
     id: 'monstera-deliciosa',
     name: 'Monstera Deliciosa',
@@ -103,7 +74,159 @@ export const products: Product[] = [
     specifications: ['Height: 1-2 feet', 'Light: Low to bright indirect', 'Water: Weekly', 'Pet-friendly: No'],
     stockStatus: 'in_stock'
   },
-  // Add more products as needed
+  {
+    id: 'fiddle-leaf-fig',
+    name: 'Fiddle Leaf Fig',
+    category: 'indoor-plants',
+    price: 59.99,
+    description: 'Popular indoor tree with large, violin-shaped leaves.',
+    imageUrl: 'https://images.pexels.com/photos/2014422/pexels-photo-2014422.jpeg',
+    specifications: ['Height: 3-4 feet', 'Light: Bright indirect', 'Water: Moderate', 'Pet-friendly: No'],
+    stockStatus: 'low_stock',
+    featured: true
+  },
+  {
+    id: 'snake-plant',
+    name: 'Snake Plant',
+    category: 'indoor-plants',
+    price: 24.99,
+    description: 'Hardy, air-purifying plant with striking upright leaves.',
+    imageUrl: 'https://images.pexels.com/photos/2123482/pexels-photo-2123482.jpeg',
+    specifications: ['Height: 1-3 feet', 'Light: Any', 'Water: Low', 'Pet-friendly: No'],
+    stockStatus: 'in_stock'
+  },
+
+  // Outdoor Plants
+  {
+    id: 'japanese-maple',
+    name: 'Japanese Maple',
+    category: 'outdoor-plants',
+    price: 89.99,
+    description: 'Beautiful ornamental tree with delicate red foliage.',
+    imageUrl: 'https://images.pexels.com/photos/1084188/pexels-photo-1084188.jpeg',
+    specifications: ['Height: 4-5 feet', 'Light: Partial shade', 'Water: Regular', 'Cold Hardy: Yes'],
+    stockStatus: 'in_stock',
+    featured: true
+  },
+  {
+    id: 'lavender',
+    name: 'Lavender',
+    category: 'outdoor-plants',
+    price: 19.99,
+    description: 'Fragrant herb with beautiful purple blooms.',
+    imageUrl: 'https://images.pexels.com/photos/2363302/pexels-photo-2363302.jpeg',
+    specifications: ['Height: 1-2 feet', 'Light: Full sun', 'Water: Low', 'Fragrant: Yes'],
+    stockStatus: 'in_stock'
+  },
+  {
+    id: 'hydrangea',
+    name: 'Hydrangea',
+    category: 'outdoor-plants',
+    price: 34.99,
+    description: 'Classic garden shrub with large, showy blooms.',
+    imageUrl: 'https://images.pexels.com/photos/5766987/pexels-photo-5766987.jpeg',
+    specifications: ['Height: 3-4 feet', 'Light: Partial shade', 'Water: Regular', 'Blooming: Summer'],
+    stockStatus: 'low_stock'
+  },
+
+  // Succulents
+  {
+    id: 'echeveria',
+    name: 'Echeveria',
+    category: 'succulents',
+    price: 12.99,
+    description: 'Rosette-forming succulent with colorful leaves.',
+    imageUrl: 'https://images.pexels.com/photos/1470171/pexels-photo-1470171.jpeg',
+    specifications: ['Height: 4-6 inches', 'Light: Bright', 'Water: Low', 'Pet-friendly: Yes'],
+    stockStatus: 'in_stock',
+    featured: true
+  },
+  {
+    id: 'aloe-vera',
+    name: 'Aloe Vera',
+    category: 'succulents',
+    price: 15.99,
+    description: 'Medicinal succulent with thick, gel-filled leaves.',
+    imageUrl: 'https://images.pexels.com/photos/4505257/pexels-photo-4505257.jpeg',
+    specifications: ['Height: 1-2 feet', 'Light: Bright', 'Water: Low', 'Medicinal: Yes'],
+    stockStatus: 'in_stock'
+  },
+  {
+    id: 'jade-plant',
+    name: 'Jade Plant',
+    category: 'succulents',
+    price: 18.99,
+    description: 'Classic succulent known for its tree-like growth.',
+    imageUrl: 'https://images.pexels.com/photos/4505167/pexels-photo-4505167.jpeg',
+    specifications: ['Height: 1-3 feet', 'Light: Bright', 'Water: Low', 'Long-lived: Yes'],
+    stockStatus: 'low_stock'
+  },
+
+  // Planters
+  {
+    id: 'ceramic-planter',
+    name: 'Modern Ceramic Planter',
+    category: 'planters',
+    price: 29.99,
+    description: 'Sleek ceramic planter with drainage hole and saucer.',
+    imageUrl: 'https://images.pexels.com/photos/1084199/pexels-photo-1084199.jpeg',
+    specifications: ['Size: 8 inches', 'Material: Ceramic', 'Drainage: Yes', 'Color: White'],
+    stockStatus: 'in_stock',
+    featured: true
+  },
+  {
+    id: 'hanging-planter',
+    name: 'Macrame Hanging Planter',
+    category: 'planters',
+    price: 24.99,
+    description: 'Handcrafted macrame plant hanger with ceramic pot.',
+    imageUrl: 'https://images.pexels.com/photos/1084199/pexels-photo-1084199.jpeg',
+    specifications: ['Length: 40 inches', 'Material: Cotton rope', 'Pot included: Yes', 'Indoor use'],
+    stockStatus: 'in_stock'
+  },
+  {
+    id: 'concrete-planter',
+    name: 'Industrial Concrete Planter',
+    category: 'planters',
+    price: 34.99,
+    description: 'Modern concrete planter with clean lines.',
+    imageUrl: 'https://images.pexels.com/photos/1084199/pexels-photo-1084199.jpeg',
+    specifications: ['Size: 10 inches', 'Material: Concrete', 'Drainage: Yes', 'Color: Gray'],
+    stockStatus: 'low_stock'
+  },
+
+  // Plant Care
+  {
+    id: 'organic-fertilizer',
+    name: 'Organic Plant Food',
+    category: 'plant-care',
+    price: 14.99,
+    description: 'All-natural fertilizer for healthy plant growth.',
+    imageUrl: 'https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg',
+    specifications: ['Size: 32 oz', 'Organic: Yes', 'All-purpose', 'Indoor/Outdoor use'],
+    stockStatus: 'in_stock'
+  },
+  {
+    id: 'pruning-shears',
+    name: 'Premium Pruning Shears',
+    category: 'plant-care',
+    price: 22.99,
+    description: 'Professional-grade pruning shears for precise cuts.',
+    imageUrl: 'https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg',
+    specifications: ['Length: 8 inches', 'Material: Stainless steel', 'Ergonomic grip', 'Safety lock'],
+    stockStatus: 'in_stock',
+    featured: true
+  },
+  {
+    id: 'moisture-meter',
+    name: 'Soil Moisture Meter',
+    category: 'plant-care',
+    price: 12.99,
+    description: 'Digital meter for monitoring soil moisture levels.',
+    imageUrl: 'https://images.pexels.com/photos/1301856/pexels-photo-1301856.jpeg',
+    specifications: ['Battery operated', 'Digital display', 'Easy to use', 'Accurate readings'],
+    stockStatus: 'low_stock'
+  }
 ];
 
 export const getProductsByCategory = (categoryId: string): Product[] => {
