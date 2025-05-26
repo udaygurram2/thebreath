@@ -46,7 +46,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <NavLink to="/" className="relative z-50">
             <img 
-              src="https://res.cloudinary.com/udaygurram/image/upload/c_crop,ar_16:9,e_improve,e_sharpen/v1747667558/WhatsApp_Image_2025-04-30_at_10.22.35__1_-removebg-preview_boef7k.png"
+              src="https://res.cloudinary.com/udaygurram/image/upload/v1748272714/Screenshot_2025-05-26_at_8.41.17_PM-removebg-preview_bagwpy.png"
               alt="Breathe Logo"
               className="w-24 md:w-32 transition-opacity"
             />
